@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">WhoDoneIt</string>
     <string name="action_settings">Settings</string>
+    <string name="offense_title_hint">Enter in the name of the offense!</string>
+    <string name="offense_details_label">Describe the offense!</string>
+    <string name="offense_title_label">What is the name of ye offense!</string>
+    <string name="offense_solved_label">Has the offense been rectified?</string>
+
 </resources>
