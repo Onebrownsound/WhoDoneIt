@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
@@ -51,10 +52,28 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
 
     //private class definitions required for utilizing recylerview
     private class OffenseHolder extends RecyclerView.ViewHolder{
+        private Offense binding_offense;
         public TextView title;
+        public TextView date;
+        public CheckBox solved;
+
         public OffenseHolder(View itemView){
             super(itemView);
-            title = (TextView) itemView;
+            title = (TextView) itemView.findViewById(R.id.list_item_offense_title_text);
+            date = (TextView) itemView.findViewById(R.id.list_item_offense_date_text);
+            solved = (CheckBox) itemView.findViewById(R.id.list_item_offense_check_box);
+
+        }
+
+        //the below function will bind an offense instance to the "right" view slots
+        public void bindOffense(Offense o){
+            binding_offense = o;
+
+
+            title.setText(binding_offense.getOffense_description());
+            date.setText(binding_offense.getDate());
+            solved.setChecked(binding_offense.isSolved());
+
         }
 
     }
@@ -70,14 +89,14 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         @Override
         public OffenseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1,parent,false);
+            View view = layoutInflater.inflate(R.layout.list_item_offense,parent,false);
             return new OffenseHolder(view);
         }
 
         @Override
         public void onBindViewHolder(OffenseHolder holder, int position) {
             Offense offense = offense_list.get(position);
-            holder.title.setText(offense.getOffense_description());
+            holder.bindOffense(offense);
 
         }
 
