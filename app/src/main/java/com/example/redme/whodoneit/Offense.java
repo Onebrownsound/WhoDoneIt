@@ -34,7 +34,8 @@ public class Offense {
 
 
     public String getDate() {
-
+        //Dateformat is a library that takes in a string + Date object
+        // returns a parsed representation that .toString may be called upon.
         DateFormat df = new DateFormat();
         //So when we want the date it will return the Day Date and time
         return df.format("EEEE MM-dd-yyyy HH:mm",date).toString();

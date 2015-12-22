@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 /**
  * Created by redme on 12/19/2015.
  */
@@ -20,13 +22,23 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
     private EditText description_field;
     private Button date_button;
     private CheckBox check_box;
+    private static final String ARG_OFFENSE_ID= "offense_id";
+
+    public static OffenseFragment newInstance (UUID offense_id){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_OFFENSE_ID, offense_id);
+        OffenseFragment fragment = new OffenseFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        test_Offense= new Offense();
+        UUID offense_id = (UUID) getActivity().getIntent().getSerializableExtra(OffenseActivity.SAMPLE_OFFENSE_ID);
+        test_Offense= OffenseSingleton.get(getActivity()).getOffense(offense_id);
 
     }
 
@@ -44,6 +56,7 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
         //we get this field by id name and then add listeners to this text field that detect text changes
         //if we did not do this we would have no idea when someone entered or did not enter text
         title_field = (EditText)v.findViewById(R.id.offense_title);
+        title_field.setText(test_Offense.getTitle());
         title_field.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -63,6 +76,7 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
             }
         });
         description_field = (EditText)v.findViewById(R.id.offense_description);
+        description_field.setText(test_Offense.getOffense_description());
         description_field.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -91,7 +105,7 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
         date_button.setEnabled(false);
 
         check_box = (CheckBox) v.findViewById(R.id.offense_solved);
-
+        check_box.setChecked(test_Offense.isSolved());
         //Holy ugly we need to fix this later
         //See if the checkbox is toggled if and set our test offense to that Bool
         check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){@Override
