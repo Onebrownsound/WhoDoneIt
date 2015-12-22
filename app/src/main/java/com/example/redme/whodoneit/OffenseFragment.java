@@ -17,6 +17,7 @@ import android.widget.EditText;
 public class OffenseFragment extends android.support.v4.app.Fragment {
     private Offense test_Offense;
     private EditText title_field;
+    private EditText description_field;
     private Button date_button;
     private CheckBox check_box;
 
@@ -44,6 +45,25 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
         //if we did not do this we would have no idea when someone entered or did not enter text
         title_field = (EditText)v.findViewById(R.id.offense_title);
         title_field.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after) {
+                // This space intentionally left blank
+            }
+
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count) {
+                test_Offense.setTitle(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // This one too
+            }
+        });
+        description_field = (EditText)v.findViewById(R.id.offense_description);
+        description_field.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
                     CharSequence s, int start, int count, int after) {

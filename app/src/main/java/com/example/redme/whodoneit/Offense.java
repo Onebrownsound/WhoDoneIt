@@ -9,6 +9,16 @@ import android.text.format.DateFormat;
  */
 public class Offense {
     private UUID user_id;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String title;
     private String offense_description;
     private Date date;
     private Boolean solved;

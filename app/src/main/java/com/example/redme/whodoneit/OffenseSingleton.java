@@ -48,7 +48,8 @@ public class OffenseSingleton {
         for(int i = 0; i<100; i++){
             Offense dummy_offense = new Offense();
             dummy_offense.setSolved(i % 2 == 0);
-            dummy_offense.setOffense_description(Integer.toString(i));
+            dummy_offense.setTitle(Integer.toString(i));
+            dummy_offense.setOffense_description("Dummy Description");
             offense_list.add(dummy_offense);
         }
 

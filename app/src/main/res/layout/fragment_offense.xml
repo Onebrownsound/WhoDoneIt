@@ -10,6 +10,7 @@
         android:text="@string/offense_title_label"
         style="?android:listSeparatorTextViewStyle"
         />
+
     <EditText android:id="@+id/offense_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +24,16 @@
         android:text="@string/offense_details_label"
         style="?android:listSeparatorTextViewStyle"
         />
+
+    <EditText
+        android:id="@+id/offense_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="right"
+        android:hint="@string/offense_description_hint" />
+
     <Button android:id="@+id/offense_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

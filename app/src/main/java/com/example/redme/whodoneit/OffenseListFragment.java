@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -51,18 +52,27 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
     }
 
     //private class definitions required for utilizing recylerview
-    private class OffenseHolder extends RecyclerView.ViewHolder{
+    private class OffenseHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Offense binding_offense;
         public TextView title;
         public TextView date;
         public CheckBox solved;
 
+
+
+
         public OffenseHolder(View itemView){
             super(itemView);
+            itemView.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.list_item_offense_title_text);
             date = (TextView) itemView.findViewById(R.id.list_item_offense_date_text);
             solved = (CheckBox) itemView.findViewById(R.id.list_item_offense_check_box);
 
+        }
+
+        @Override
+        public void onClick(View v){
+            Toast.makeText(getActivity(),binding_offense.getTitle() + "clicked!",Toast.LENGTH_SHORT).show();
         }
 
         //the below function will bind an offense instance to the "right" view slots
@@ -70,7 +80,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
             binding_offense = o;
 
 
-            title.setText(binding_offense.getOffense_description());
+            title.setText(binding_offense.getTitle());
             date.setText(binding_offense.getDate());
             solved.setChecked(binding_offense.isSolved());
 
