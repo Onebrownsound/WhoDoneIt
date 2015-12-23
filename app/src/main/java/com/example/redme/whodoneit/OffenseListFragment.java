@@ -74,7 +74,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         @Override
         public void onClick(View v){
 
-            Intent intent = new Intent(getActivity(),OffenseActivity.class);
+            Intent intent = OffenseActivity.newIntent(getActivity(),binding_offense.getUserId());
             startActivity(intent);
         }
 

@@ -23,7 +23,7 @@ public class OffenseSingleton {
     //method loops through offense_list searching for an id, return null on failure
     public Offense getOffense(UUID desired_offense_id){
         for (Offense i : offense_list){
-            if (desired_offense_id == i.getUserId()){
+            if (desired_offense_id.equals(i.getUserId())){
                 return i;
             }
         }
