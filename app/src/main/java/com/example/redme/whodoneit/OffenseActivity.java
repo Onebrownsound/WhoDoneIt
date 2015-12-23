@@ -15,21 +15,10 @@ import java.util.UUID;
 //Just override the createFragment() method and return the actual fragment you desire
 //in this case it is OffenseFragment
 public class OffenseActivity extends SingleFragmentActivity {
-    public static final String SAMPLE_OFFENSE_ID="com.example.redme.whodoneit";
-
-    public static Intent newIntent(Context packageContext, UUID offense_id){
-        Intent intent = new Intent(packageContext,OffenseActivity.class);
-        intent.putExtra(SAMPLE_OFFENSE_ID,offense_id);
-        return intent;
-
-    }
-
-   @Override
+    @Override
     protected Fragment createFragment(){
-       UUID offense_id = (UUID) getIntent().getSerializableExtra(SAMPLE_OFFENSE_ID);
-       return OffenseFragment.newInstance(offense_id);
-   }
-
+        return new OffenseFragment();
+    }
 
 
 }

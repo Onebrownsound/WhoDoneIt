@@ -1,5 +1,6 @@
 package com.example.redme.whodoneit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,7 +73,9 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
 
         @Override
         public void onClick(View v){
-            Toast.makeText(getActivity(),binding_offense.getTitle() + "clicked!",Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getActivity(),OffenseActivity.class);
+            startActivity(intent);
         }
 
         //the below function will bind an offense instance to the "right" view slots

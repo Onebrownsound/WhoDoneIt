@@ -10,13 +10,6 @@ import android.text.format.DateFormat;
 public class Offense {
     private UUID user_id;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     private String title;
     private String offense_description;
@@ -32,6 +25,13 @@ public class Offense {
         this.solved = solved;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String name) {
+        this.title = name;
+    }
 
     public String getDate() {
         //Dateformat is a library that takes in a string + Date object
