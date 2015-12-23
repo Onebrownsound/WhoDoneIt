@@ -17,18 +17,29 @@ import java.util.UUID;
  * Created by redme on 12/19/2015.
  */
 public class OffenseFragment extends android.support.v4.app.Fragment {
+    private static final String ARG_OFFENSE_ID = "offense_id";
     private Offense test_Offense;
     private EditText title_field;
     private EditText description_field;
     private Button date_button;
     private CheckBox check_box;
 
+    //Below is how you can essentially staple a dictionary to a fragment
+    //Create a bundle then put a key,value pair into it, followed by this set method
+    public static OffenseFragment newInstance(UUID offenseId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_OFFENSE_ID, offenseId);
+
+        OffenseFragment fragment = new OffenseFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        UUID test_Offense_id = (UUID) getActivity().getIntent().getSerializableExtra(OffenseActivity.EXTRA_OFFENSE_ID);
+        UUID test_Offense_id = (UUID) getArguments().getSerializable(ARG_OFFENSE_ID);
         test_Offense = OffenseSingleton.get(getActivity()).getOffense(test_Offense_id);
 
     }

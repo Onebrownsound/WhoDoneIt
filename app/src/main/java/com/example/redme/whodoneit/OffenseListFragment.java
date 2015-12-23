@@ -22,7 +22,13 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
     private RecyclerView offense_recycle_view;
     private OffenseAdapter offense_adapter;
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
 
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -74,6 +80,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         @Override
         public void onClick(View v){
 
+            
             Intent intent = OffenseActivity.newIntent(getActivity(),binding_offense.getUserId());
             startActivity(intent);
         }
@@ -125,8 +132,14 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         OffenseSingleton offense_singleton = OffenseSingleton.get(getActivity());
         List<Offense> offense_list = offense_singleton.getOffenses();
 
-        offense_adapter = new OffenseAdapter(offense_list);
-        offense_recycle_view.setAdapter(offense_adapter);
+        //This if/else is to update the adapter in the event we changed something in a child-fragment
+        if (offense_adapter==null) {
+            offense_adapter = new OffenseAdapter(offense_list);
+            offense_recycle_view.setAdapter(offense_adapter);
+        }
+        else {
+            offense_adapter.notifyDataSetChanged();
+        }
 
 
 

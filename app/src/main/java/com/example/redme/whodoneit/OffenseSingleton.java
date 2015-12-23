@@ -32,6 +32,7 @@ public class OffenseSingleton {
     public List<Offense> getOffenses(){
         return offense_list;
     }
+
     public static OffenseSingleton get (Context context){
         if (offense_singleton==null){
             offense_singleton = new OffenseSingleton(context);
