@@ -1,6 +1,9 @@
 package com.example.redme.whodoneit;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -18,6 +22,9 @@ import java.util.UUID;
  */
 public class OffenseFragment extends android.support.v4.app.Fragment {
     private static final String ARG_OFFENSE_ID = "offense_id";
+    private static final String DIALOG_DATE = "DialogDate";
+    private static final int REQUEST_DATE = 0 ;
+
     private Offense test_Offense;
     private EditText title_field;
     private EditText description_field;
@@ -103,16 +110,29 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
         date_button = (Button) v.findViewById(R.id.offense_date);
 
         //use our dummy test_Offense instance and pass the string into our button
-        date_button.setText(test_Offense.getDate());
-        date_button.setEnabled(false);
+        date_button.setText(test_Offense.getStringDate());
+
+        //open a dialog on click, set new fragment as target and listen for response
+        date_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(test_Offense.getDate());
+                dialog.setTargetFragment(OffenseFragment.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
 
         check_box = (CheckBox) v.findViewById(R.id.offense_solved);
 
         //Holy ugly we need to fix this later
         //See if the checkbox is toggled if and set our test offense to that Bool
-        check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){@Override
-                                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                     test_Offense.setSolved(isChecked);}});
+        check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                test_Offense.setSolved(isChecked);
+            }
+        });
 
 
 
@@ -123,5 +143,18 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
 
         return v;
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data
+                    .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            test_Offense.setDate(date);
+            date_button.setText(test_Offense.getStringDate());
+        }
     }
 }

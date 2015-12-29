@@ -33,12 +33,16 @@ public class Offense {
         this.title = name;
     }
 
-    public String getDate() {
+    public String getStringDate() {
         //Dateformat is a library that takes in a string + Date object
         // returns a parsed representation that .toString may be called upon.
         DateFormat df = new DateFormat();
         //So when we want the date it will return the Day Date and time
         return df.format("EEEE MM-dd-yyyy HH:mm",date).toString();
+    }
+
+    public Date getDate (){
+        return date;
     }
 
     public void setDate(Date date) {
