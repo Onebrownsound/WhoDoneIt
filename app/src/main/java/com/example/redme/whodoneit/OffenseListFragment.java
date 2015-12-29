@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -30,6 +33,8 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //we need to let the constructor know that we have a menu for this fragment
+        setHasOptionsMenu(true);
 
 
     }
@@ -141,5 +146,28 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
 
 
 
+    }
+
+
+    //Serves to inflate the menu for the offense_list fragment
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_offense_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_offense:
+                Offense offense = new Offense();
+                OffenseSingleton.get(getActivity()).addOffense(offense);
+                Intent intent = OffensePagerActivity
+                        .newIntent(getActivity(), offense.getUserId());
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

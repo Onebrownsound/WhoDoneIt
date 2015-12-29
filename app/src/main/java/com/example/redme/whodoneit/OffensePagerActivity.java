@@ -3,11 +3,12 @@ package com.example.redme.whodoneit;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +18,7 @@ import java.util.UUID;
 //instantiate whatever fragment we want
 //Just override the createFragment() method and return the actual fragment you desire
 //in this case it is OffenseFragment
-public class OffensePagerActivity extends FragmentActivity {
+public class OffensePagerActivity extends AppCompatActivity {
 
     private ViewPager view_pager;
     private List<Offense> offense_list;
@@ -63,7 +64,7 @@ public class OffensePagerActivity extends FragmentActivity {
             }
         });
 
-
+        //get the index of the desired offense and set it in the view pager
         for(int i=0; i<offense_list.size(); i++){
             if (offense_list.get(i).getUserId().equals(offense_id)){
                 view_pager.setCurrentItem(i);

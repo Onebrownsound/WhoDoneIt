@@ -46,13 +46,19 @@ public class OffenseSingleton {
     //interesting how you can cleverly utilize OOP private/public on constructors to achieve the goal
     private OffenseSingleton(Context context){
         offense_list = new ArrayList<>();
-        for(int i = 0; i<100; i++){
-            Offense dummy_offense = new Offense();
-            dummy_offense.setSolved(i % 2 == 0);
-            dummy_offense.setTitle(Integer.toString(i));
-            dummy_offense.setOffense_description("Dummy Description");
-            offense_list.add(dummy_offense);
-        }
 
+
+    }
+
+    public void addOffense(Offense o){
+        offense_list.add(o);
+    }
+
+    public void deleteOffense(Offense o){
+        for (Offense i: offense_list){
+            if(i.getUserId().equals(o.getUserId())){
+                offense_list.remove(o);
+            }
+        }
     }
 }

@@ -7,6 +7,9 @@
     <string name="offense_solved_label">Has the offense been rectified?</string>
     <string name="offense_description_hint">Describe the offense here!</string>
     <string name="date_picker_title">Date of Offense</string>
+    <string name="new_offense">New Offense</string>
+
+    <string name="delete_offense">Delete Offense</string>
 </resources>
 
 

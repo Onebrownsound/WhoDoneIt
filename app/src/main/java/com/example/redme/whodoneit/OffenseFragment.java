@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -155,6 +158,26 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
                     .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             test_Offense.setDate(date);
             date_button.setText(test_Offense.getStringDate());
+        }
+    }
+
+    //Serves to inflate the menu for the offense_list fragment
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_offense, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_offense:
+
+                OffenseSingleton.get(getActivity()).deleteOffense(test_Offense);
+              
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
