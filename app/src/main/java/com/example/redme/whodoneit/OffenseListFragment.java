@@ -112,7 +112,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         @Override
         public OffenseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.list_item_offense,parent,false);
+            View view = layoutInflater.inflate(R.layout.list_item_offense, parent, false);
             return new OffenseHolder(view);
         }
 
@@ -125,7 +125,13 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
 
         @Override
         public int getItemCount() {
-            return offense_list.size();
+            try{
+                return offense_list.size();
+            } catch (Exception e){
+                return 0;
+            }
+
+
         }
     }
 

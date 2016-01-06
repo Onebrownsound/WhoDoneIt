@@ -161,23 +161,10 @@ public class OffenseFragment extends android.support.v4.app.Fragment {
         }
     }
 
-    //Serves to inflate the menu for the offense_list fragment
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_offense, menu);
-    }
+    public void onPause(){
+        super.onPause();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_delete_offense:
-
-                OffenseSingleton.get(getActivity()).deleteOffense(test_Offense);
-              
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        OffenseSingleton.get(getActivity()).updateOffense(test_Offense);
     }
 }
