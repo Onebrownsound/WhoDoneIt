@@ -51,7 +51,10 @@ public class Offense {
 
     public Offense(){
         //Upon instantiation of new offense auto add date and user_id
-        user_id = UUID.randomUUID();
+         this(UUID.randomUUID());
+    }
+    public Offense(UUID id){
+        user_id = id;
         date = new Date();
     }
 

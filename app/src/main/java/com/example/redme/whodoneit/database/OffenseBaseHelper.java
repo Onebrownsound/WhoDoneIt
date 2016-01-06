@@ -15,6 +15,7 @@ import com.example.redme.whodoneit.database.OffenseDbSchema.OffenseTable;
 public class OffenseBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "offenseBase.db";
+
     public OffenseBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -24,6 +25,7 @@ public class OffenseBaseHelper extends SQLiteOpenHelper {
             " _id integer primary key autoincrement, " +
             OffenseTable.Cols.UUID + ", " +
             OffenseTable.Cols.TITLE + ", " +
+            OffenseTable.Cols.DESCRIPTION + ", " +
             OffenseTable.Cols.DATE + ", " +
             OffenseTable.Cols.SOLVED +
             ")");

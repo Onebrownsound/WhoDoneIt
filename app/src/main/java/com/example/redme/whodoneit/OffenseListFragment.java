@@ -37,6 +37,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
         setHasOptionsMenu(true);
 
 
+
     }
 
     @Override
@@ -125,13 +126,12 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
 
         @Override
         public int getItemCount() {
-            try{
+
                 return offense_list.size();
-            } catch (Exception e){
-                return 0;
-            }
+        }
 
-
+        public void setOffenses(List<Offense> offenses){
+            offense_list=offenses;
         }
     }
 
@@ -147,6 +147,7 @@ public class OffenseListFragment extends android.support.v4.app.Fragment{
             offense_recycle_view.setAdapter(offense_adapter);
         }
         else {
+            offense_adapter.setOffenses(offense_list);
             offense_adapter.notifyDataSetChanged();
         }
 

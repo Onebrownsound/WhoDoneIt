@@ -9,6 +9,7 @@ public class OffenseListActivity extends SingleFragmentActivity {
 
  @Override
  protected Fragment createFragment(){
+
      return new OffenseListFragment();
  }
 
